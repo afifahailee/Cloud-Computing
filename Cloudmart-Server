@@ -1,0 +1,397 @@
+> **Project Name:** **CloudMart Server – AIU Marketplace**
+> *(A Cloud-Native Mini E-Commerce Store for Albukhary International University)*
+
+This version is written in an academic style suitable for submission and satisfies all the required sections in your assignment rubric.
+
+---
+
+# CloudMart Server – AIU Marketplace
+
+## 1. Introduction
+
+### 1.1 Project Overview
+
+CloudMart Server is a cloud-native mini e-commerce platform developed for Albukhary International University (AIU). The application provides an online marketplace where students can browse products, add items to a shopping cart, and place orders, while administrators manage product listings, inventory, and customer orders through a centralized dashboard.
+
+The project utilizes Google Cloud Platform (GCP) services to demonstrate cloud computing concepts including virtualization, cloud infrastructure, service-oriented architecture (SOA), and cloud security. The system is deployed on Google Compute Engine and integrates with Firestore and Cloud Storage to provide scalable, reliable, and real-time services.
+
+---
+
+## 1.2 Problem Background
+
+Students at Albukhary International University frequently purchase and sell items such as textbooks, stationery, electronic devices, clothing, and daily necessities through informal communication channels like WhatsApp groups, Telegram, and social media. These platforms lack proper inventory management, order tracking, centralized product listings, and secure data storage.
+
+As a result:
+
+* Product information becomes difficult to manage.
+* Buyers have difficulty searching for available products.
+* Sellers cannot effectively manage inventory.
+* There is no centralized platform for transactions.
+
+CloudMart Server addresses these challenges by providing a centralized cloud-based marketplace that is accessible anytime through the internet.
+
+---
+
+## 1.3 Business Case
+
+The proposed solution offers several benefits to AIU students and administrators.
+
+### Students
+
+* Easy access to products
+* Faster purchasing process
+* Centralized marketplace
+* Better product organization
+
+### Administrators
+
+* Inventory management
+* Order management
+* Product management
+* Sales monitoring
+
+---
+
+## 1.4 Project Objectives
+
+The objectives of this project are:
+
+* Develop a cloud-native web application using Google Cloud Platform.
+* Deploy the application using Google Compute Engine.
+* Store application data using Google Firestore.
+* Store product images using Google Cloud Storage.
+* Implement secure networking using VPC and Firewall Rules.
+* Apply Identity and Access Management (IAM) policies.
+* Demonstrate Service-Oriented Architecture (SOA).
+* Provide real-time inventory updates.
+
+---
+
+## 2. Cloud Architecture Design
+
+### 2.1 System Architecture
+
+```
+                    Customer
+                        │
+                        │
+                  HTTP Request
+                        │
+                        ▼
+              Google Cloud Load Balancer
+                        │
+                        ▼
+              Compute Engine Instance
+                (CloudMart Server)
+                        │
+        ┌───────────────┼────────────────┐
+        │               │                │
+        ▼               ▼                ▼
+   Firestore      Cloud Storage    Cloud Monitoring
+ (Database)      (Product Images)   (Performance)
+```
+
+---
+
+### 2.2 Architecture Description
+
+The CloudMart Server architecture follows a cloud-native deployment model where user requests are routed through a Google Cloud Load Balancer before reaching the Compute Engine virtual machine hosting the Flask web application.
+
+Application data including products, users, shopping carts, and orders are stored in Google Firestore, while product images are stored in Google Cloud Storage. Cloud Monitoring is used to monitor virtual machine performance and resource utilization.
+
+---
+
+### 2.3 Google Cloud Services Used
+
+| Google Cloud Service        | Purpose                            |
+| --------------------------- | ---------------------------------- |
+| Compute Engine              | Hosts the Flask web application    |
+| Firestore                   | Stores products, users, and orders |
+| Cloud Storage               | Stores product images              |
+| Cloud Load Balancing        | Distributes incoming traffic       |
+| Virtual Private Cloud (VPC) | Secure network isolation           |
+| Firewall Rules              | Network protection                 |
+| IAM                         | User role management               |
+| Cloud Monitoring            | Performance monitoring             |
+
+---
+
+### 2.4 Deployment Model
+
+The project follows a public cloud deployment model where the application is hosted entirely on Google Cloud Platform.
+
+Deployment consists of:
+
+* Compute Engine virtual machine
+* Firestore NoSQL database
+* Cloud Storage bucket
+* External Load Balancer
+* Custom VPC network
+* Firewall configuration
+
+---
+
+## 3. Implementation and Integration
+
+### 3.1 Development Tools
+
+| Tool                  | Purpose                 |
+| --------------------- | ----------------------- |
+| Python                | Backend programming     |
+| Flask                 | Web framework           |
+| HTML                  | Frontend structure      |
+| CSS                   | User interface styling  |
+| Bootstrap             | Responsive design       |
+| JavaScript            | Client-side interaction |
+| GitHub                | Version control         |
+| Google Cloud Platform | Cloud deployment        |
+
+---
+
+### 3.2 Project Modules
+
+CloudMart Server follows a modular Service-Oriented Architecture (SOA).
+
+#### Product Service
+
+Responsibilities:
+
+* Display products
+* Add products
+* Update products
+* Delete products
+
+---
+
+#### User Service
+
+Responsibilities:
+
+* User authentication
+* Login
+* User role validation
+
+---
+
+#### Cart Service
+
+Responsibilities:
+
+* Add to cart
+* Remove from cart
+* Calculate total price
+
+---
+
+#### Order Service
+
+Responsibilities:
+
+* Create order
+* Update inventory
+* View order history
+
+---
+
+#### Image Service
+
+Responsibilities:
+
+* Upload images
+* Retrieve product images
+* Store images in Cloud Storage
+
+---
+
+### 3.3 Firestore Collections
+
+```
+products
+│
+├── Product ID
+│      ├── Name
+│      ├── Price
+│      ├── Stock
+│      └── ImageURL
+
+orders
+│
+├── Order ID
+│      ├── Customer
+│      ├── Product
+│      ├── Quantity
+│      └── Status
+
+users
+│
+├── User ID
+│      ├── Name
+│      ├── Email
+│      └── Role
+```
+
+---
+
+### 3.4 Application Workflow
+
+1. User visits CloudMart website.
+2. Products are retrieved from Firestore.
+3. User selects products.
+4. Products are added into shopping cart.
+5. User confirms checkout.
+6. Order is stored inside Firestore.
+7. Inventory is updated automatically.
+8. Administrator views incoming orders.
+
+---
+
+## 4. Security and Privacy Measures Governance
+
+Cloud security is one of the major considerations throughout this project.
+
+---
+
+### 4.1 Identity and Access Management (IAM)
+
+IAM is implemented using role-based access control.
+
+| Role     | Permission         |
+| -------- | ------------------ |
+| Admin    | Full system access |
+| Customer | Purchase products  |
+| Viewer   | Read-only access   |
+
+The Principle of Least Privilege is applied by assigning only the necessary permissions required by each user role.
+
+---
+
+### 4.2 Virtual Private Cloud (VPC)
+
+A custom VPC network isolates the application resources from other cloud environments.
+
+Benefits include:
+
+* Secure communication
+* Controlled traffic
+* Better network management
+
+---
+
+### 4.3 Firewall Rules
+
+Firewall rules are configured to allow only required ports.
+
+| Port | Purpose |
+| ---- | ------- |
+| 22   | SSH     |
+| 80   | HTTP    |
+| 443  | HTTPS   |
+
+Unused ports remain blocked to reduce security risks.
+
+---
+
+### 4.4 Data Encryption
+
+Google Cloud automatically encrypts Firestore data and Cloud Storage objects at rest using AES-256 encryption.
+
+HTTPS is used to encrypt data during transmission between users and the web server.
+
+---
+
+### 4.5 Access Control
+
+The system implements:
+
+* Authentication
+* Authorization
+* Role-based access
+* Secure administrator login
+
+These mechanisms ensure only authorized users can modify system resources.
+
+---
+
+## 5. Reflection on Learning & Application
+
+### Challenges Encountered
+
+Throughout the development process several challenges were experienced.
+
+The first challenge involved configuring Google Cloud Platform services, particularly linking billing accounts and enabling Compute Engine APIs.
+
+Another challenge involved integrating Firestore with the Flask application while maintaining real-time data consistency.
+
+Deploying the application to Compute Engine also required understanding Linux server management, SSH connectivity, firewall configurations, and virtual machine administration.
+
+---
+
+### Lessons Learned
+
+This project provided valuable experience in:
+
+* Cloud infrastructure deployment
+* Virtual machine management
+* Cloud networking
+* Service-Oriented Architecture
+* Firestore NoSQL databases
+* Cloud security implementation
+* Cloud-native application development
+
+The project also strengthened practical skills in integrating multiple cloud services into one complete system.
+
+---
+
+### Future Improvements
+
+Future enhancements may include:
+
+* Online payment gateway integration
+* Email notifications
+* AI-powered product recommendations
+* Mobile application development
+* Multi-vendor marketplace
+* Product rating and review system
+* QR code order verification
+* Cloud Functions for serverless order processing
+
+---
+
+## 6. References (APA 7th Edition)
+
+Google Cloud. (2024). *Compute Engine documentation*. [https://cloud.google.com/compute/docs](https://cloud.google.com/compute/docs)
+
+Google Cloud. (2024). *Cloud Firestore documentation*. [https://cloud.google.com/firestore/docs](https://cloud.google.com/firestore/docs)
+
+Google Cloud. (2024). *Cloud Storage documentation*. [https://cloud.google.com/storage/docs](https://cloud.google.com/storage/docs)
+
+Google Cloud. (2024). *Virtual Private Cloud documentation*. [https://cloud.google.com/vpc/docs](https://cloud.google.com/vpc/docs)
+
+Google Cloud. (2024). *Identity and Access Management documentation*. [https://cloud.google.com/iam/docs](https://cloud.google.com/iam/docs)
+
+Google Cloud. (2024). *Cloud Load Balancing documentation*. [https://cloud.google.com/load-balancing/docs](https://cloud.google.com/load-balancing/docs)
+
+Fielding, R. T. (2000). *Architectural styles and the design of network-based software architectures* (Doctoral dissertation, University of California, Irvine).
+
+Bass, L., Clements, P., & Kazman, R. (2022). *Software architecture in practice* (4th ed.). Addison-Wesley.
+
+---
+
+## 💡 To Make It Even More Professional
+
+For higher marks, I also recommend including:
+
+* **Architecture diagram** (designed in Draw.io or Lucidchart with official GCP icons)
+* **SOA module diagram**
+* **Firestore database schema diagram**
+* **Screenshots** of:
+
+  * Compute Engine VM
+  * Firestore collections
+  * Cloud Storage bucket
+  * VPC and firewall rules
+  * IAM roles
+  * Load Balancer
+  * Running AIU Marketplace website
+
+These visuals will strengthen your GitHub Wiki and make it look like a professional cloud deployment project.
